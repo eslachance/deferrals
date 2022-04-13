@@ -2,9 +2,10 @@
   "name": "deferrals",
   "version": "1.0.0",
   "description": "A way to globally define promises that you can await at multiple locations.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   },
   "author": "Evelyne Lachance <eslachance@gmail.com> (https://evie.codes/)",
   "keywords": [],
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "typescript": "^4.6.3"
+  }
 }
