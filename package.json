@@ -1,6 +1,6 @@
 {
   "name": "deferrals",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A way to globally define promises that you can await at multiple locations.",
   "main": "dist/index.js",
   "scripts": {
