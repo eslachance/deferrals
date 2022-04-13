@@ -1,0 +1,19 @@
+{
+  "name": "deferrals",
+  "version": "1.0.0",
+  "description": "A way to globally define promises that you can await at multiple locations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eslachance/deferrals.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eslachance/deferrals/issues"
+  },
+  "author": "Evelyne Lachance <eslachance@gmail.com> (https://evie.codes/)",
+  "keywords": [],
+  "license": "Apache-2.0"
+}
