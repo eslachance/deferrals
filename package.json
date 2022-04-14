@@ -4,9 +4,14 @@
   "description": "A way to globally define promises that you can await at multiple locations.",
   "main": "dist/index.js",
   "scripts": {
+    "prepublishOnly": "tsc",
     "build": "tsc",
     "watch": "tsc -w"
   },
+  "files": [
+    "dist",
+    "!dist/*.tsbuildinfo"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eslachance/deferrals.git"
