@@ -1,6 +1,6 @@
 {
   "name": "deferrals",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A way to globally define promises that you can await at multiple locations.",
   "author": "Evelyne Lachance <eslachance@gmail.com> (https://evie.codes/)",
   "license": "Apache-2.0",
