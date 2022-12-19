@@ -36,7 +36,7 @@ export function makeDefer(key: string): Promise<unknown> {
  * @returns The promise to resolve. If it does not exist, returns null.
  */
 export function waitForDefer(key: string): Promise<unknown> | null {
-  return defers.has(key) ? defers.get(key)!.promise : null;
+  return defers.has(key) ? defers.get(key)!.promise : Promise.resolve();
 }
 
 /**
