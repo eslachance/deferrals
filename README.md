@@ -56,7 +56,38 @@ setTimeout(() => {
 }, 2000);
 ```
 
-These deferrals don't need to be created and used in the same file or folder - you can import the library and get the deferals from any file in your project!
+Example for the equivalent of an async constructor:
+
+```js
+const {
+  makeDefer,
+  waitForDefer,
+  resolveDefer
+} = require("deferrals");
+
+class SomeAsyncWrapper {
+  // Private field property!
+  #deferName
+  constructor(defername) {
+    this.#deferName = name
+    makeDefer(this.#deferName);
+    this.isready = waitForDefer(this.#deferName);
+    init()
+  }
+  async init() {
+    // do DB stuff in async mode
+    resolveDefer(this.#deferName);
+  }
+}
+
+
+const myWrapperInstance = new SomeAsyncWrapper("mydbthing");
+
+const mainfunction = async() {
+  await myWrapperInstance.defer;
+  // now you know the init() function has finished, whever you use myInstanceWrapper!
+}
+```
 
 ## Uses (why the hell does this exist?)
 
@@ -77,7 +108,7 @@ So, there are a few places where a deferral can be used effectively:
 
 - You need a number of functions, events, loops, or any code, to wait for an external trigger to be called (either individually, as a group, or globally).
 - You need to shut off all processing on events, streams, or modules, but not _lose_ the incoming event data from calls (in other words, not just "return" which loses the progress in the code).
-- You need to wait for _several_ external triggers.
+- You need to wait for _several_ external triggers to synchronize processing.
 
 ## Documentation
 
