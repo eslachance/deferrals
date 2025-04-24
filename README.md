@@ -8,7 +8,7 @@ Deferrals is a very simple library that enables the creation of any number of pr
 
 ```
 npm i deferrals
-
+pnpm add deferrals
 yarn add deferrals
 ```
 
@@ -89,11 +89,35 @@ const mainfunction = async() {
 }
 ```
 
+## Require() or import
+
+Deferrals supports using require (CJS) as well as import syntax (ESM) syntax. 
+
+Import looks like this :
+```js
+import {
+  makeDefer,
+  waitForDefer,
+  resolveDefer
+} from 'deferrals';
+```
+
+## Definining configurations
+
+Currently very limited configuration, as I only have one thing to let you configure.
+
+The only option you have right now is whether using `waitForDefer(key)` will resolve immediately or wait for that key to be created.
+Meaning, if you did NOT call `makeDefer("blah")` , but you call `waitForDefer("blah")` , by default waitForDefer will resolve immediately.
+
+To change this behaviour, you may require or import `setConfig` from deferrals and use this code: 
+`setConfig({ waitForUndefined: true });`
+
+
 ## Uses (why the hell does this exist?)
 
 The reason this little project even exists came from a simple question posted on a programming discord: "How do I turn off every even handler in my bot while waiting for my database to reconnect"
 
-The question prompted me to remember what I was previously doing with my [JOSH](https://josh.evie.dev/) and [Enmap](https://enmap.evie.dev) modules : the `defer` concept, which returned a promise
+The question prompted me to remember what I was previously doing with my [JOSH](https://josh.alterion.dev/) and [Enmap](https://enmap.alterion.dev) modules : the `defer` concept, which returned a promise
 that only resolved when my initialisation (connecting to the database, opening tables, etc) was completed. I realised this pattern was useful and I hadn't actually seen it before in javascript,
 [though it exists in Golang](https://gobyexample.com/defer).
 

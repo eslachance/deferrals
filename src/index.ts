@@ -8,6 +8,26 @@ interface Defer {
   reject(reason: string): void;
 }
 
+type ConfigObject = {
+  waitForUndefined: boolean;
+};
+
+const config: ConfigObject = {
+  waitForUndefined: false,
+};
+
+/** 
+ * Define configuration options.
+ * Will merge the objects together, overwriting any value given
+ * This is a really simple initial implementation, better checks
+ * will be done later (TS)
+ * @since 1.0.6
+ * @param configuration <Object> An object with key/value pairs
+ */
+export function setConfig(newConfigObject: ConfigObject) {
+  Object.assign(config, newConfigObject);
+}
+
 /**
  * Create a new deferral promise, saves it and returns it.
  * @since 1.0.0
@@ -36,7 +56,14 @@ export function makeDefer(key: string): Promise<unknown> {
  * @returns The promise to resolve. If it does not exist, returns null.
  */
 export function waitForDefer(key: string): Promise<unknown> | null {
-  return defers.has(key) ? defers.get(key)!.promise : Promise.resolve();
+  const deferExists = defers.has(key);
+  if(!config?.waitForUndefined && !deferExists) {
+    return Promise.resolve();
+  }
+  if(config?.waitForUndefined && !deferExists) {
+    makeDefer(key);
+  }
+  return defers.get(key)!.promise;
 }
 
 /**
