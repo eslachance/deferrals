@@ -10,10 +10,12 @@ interface Defer {
 
 type ConfigObject = {
   waitForUndefined: boolean;
+  recreateOnMake: boolean;
 };
 
 const config: ConfigObject = {
   waitForUndefined: false,
+  recreateOnMake: false,
 };
 
 /** 
@@ -34,7 +36,12 @@ export function setConfig(newConfigObject: ConfigObject) {
  * @param key The identifier of the deferral. If it exists, it will be overwritten.
  * @returns The promise itself, which will be resolved when {@link resolveDefer} is called.
  */
-export function makeDefer(key: string): Promise<unknown> {
+export function makeDefer(key: string, recreateOnMake = false): Promise<unknown> {
+  if(recreateOnMake || config.recreateOnMake) {
+    if(defers.has(key)) {
+      defers.get(key)!.promise;
+    }
+  }
   let resolve: (value: unknown) => void;
   let reject: (reason?: any) => void;
 
